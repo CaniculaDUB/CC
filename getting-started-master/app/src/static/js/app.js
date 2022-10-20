@@ -52,8 +52,9 @@ function TodoListCard() {
     return (
         <React.Fragment>
             <AddItemForm onNewItem={onNewItem} />
+	    <ClearAll onNewItem2={onNewItem2}>
             {items.length === 0 && (
-                <p className="text-center">No items yet! Add one above!</p>
+                <p className="text-center">You have no todo items yet! Add one above!</p>
             )}
             {items.map(item => (
                 <ItemDisplay
@@ -66,6 +67,44 @@ function TodoListCard() {
         </React.Fragment>
     );
 }
+
+
+
+function ClearAll(){
+    const checked = it => (it.completed ? true : false);
+
+    const deleteAllItems = React.useCallback(
+	item => {
+		setItems(item.filter())
+	}
+	    [items],
+    );
+    
+    return (
+        <Form onSubmit={submitNewItem}>
+            <InputGroup className="mb-3">
+                <Form.Control
+                    value={newItem}
+                    onChange={e => setNewItem(e.target.value)}
+                    type="text"
+                    placeholder="New Item"
+                    aria-describedby="basic-addon1"
+                />
+                <InputGroup.Append>
+                    <Button
+                        type="submit"
+                        variant="success"
+                        disabled={!newItem.length}
+                        className={esborrar ? 'disabled' : ''}
+                    >
+                        {esborrar ? 'Clearing...' : 'Clear'}
+                    </Button>
+                </InputGroup.Append>
+            </InputGroup>
+        </Form>
+    );
+}
+
 
 function AddItemForm({ onNewItem }) {
     const { Form, InputGroup, Button } = ReactBootstrap;
@@ -106,8 +145,10 @@ function AddItemForm({ onNewItem }) {
                         disabled={!newItem.length}
                         className={submitting ? 'disabled' : ''}
                     >
-                        {submitting ? 'Adding...' : 'Add Item'}
+                        {submitting ? 'Adding...' : 'Add'}
                     </Button>
+	    		<Button type="submit" > 'OOOh'
+	    		</Button>
                 </InputGroup.Append>
             </InputGroup>
         </Form>
