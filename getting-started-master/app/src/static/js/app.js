@@ -53,11 +53,11 @@ function TodoListCard() {
         <React.Fragment>
             <AddItemForm onNewItem={onNewItem} />
             {items.length === 0 && (
-                <p className="text-center">No items yet! Add one above!</p>
+                <p className="text-center">No items yet! Add one above! Please!!!</p>
             )}
             {items.map(item => (
                 <ItemDisplay
-                    item={item}
+                    item= <img src={item} alt ={item} />
                     key={item.id}
                     onItemUpdate={onItemUpdate}
                     onItemRemoval={onItemRemoval}
@@ -144,7 +144,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                         className="toggles"
                         size="sm"
                         variant="link"
-                        onClick={toggleCompletion}
+                       // onClick={toggleCompletion}
                         aria-label={
                             item.completed
                                 ? 'Mark item as incomplete'
@@ -165,7 +165,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                     <Button
                         size="sm"
                         variant="link"
-                        onClick={removeItem}
+                       // onClick={removeItem}
                         aria-label="Remove Item"
                     >
                         <i className="fa fa-trash text-danger" />
